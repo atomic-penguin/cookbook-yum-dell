@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: yum-dell
-# Attributes:: default
+# Attributes:: community
 #
 # Copyright 2010, Eric G. Wolfe
 # Copyright 2010, Tippr Inc.
@@ -18,19 +18,11 @@
 # limitations under the License.
 #
 
-# Check for Dell hardware
-if node['dmi'] && node['dmi']['system'] &&
-   node['dmi']['system']['manufacturer'] &&
-   node['dmi']['system']['manufacturer'] =~ /Dell/i &&
-   node['platform_version'].to_f >= 5
-  default['yum']['dell']['enabled'] = true
-else
-  default['yum']['dell']['enabled'] = false
-end
-
-# Install srvadmin-all meta-package by default
-if node['yum']['dell']['enabled']
-  default['yum']['dell']['packages'] = %w[ srvadmin-all ]
-else
-  default['yum']['dell']['packages'] = []
-end
+default['yum']['dell']['community']['repositoryid'] = 'dell-community'
+default['yum']['dell']['community']['description'] = 'Dell Community Repository'
+default['yum']['dell']['community']['mirrorlist'] = 'http://linux.dell.com/repo/community/mirrors.cgi?' +
+  "osname=el#{node['platform_version'].to_i}&basearch=$basearch"
+default['yum']['dell']['community']['gpgkey'] = 'http://linux.dell.com/repo/community/content/' +
+  "el#{node['platform_version'].to_i}-$basearch/repodata/repomd.xml.key"
+default['yum']['dell']['community']['gpgcheck'] = true
+default['yum']['dell']['community']['failovermethod'] = 'priority'
