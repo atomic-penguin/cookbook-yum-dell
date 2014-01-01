@@ -53,7 +53,7 @@ The following are overridable attributes, in the `yum['dell']` namespace.
     <td><tt>['yum']['dell']['packages']</tt></td>
     <td>Array</td>
     <td>An array of packages from Dell repositories to install.</td>
-    <td><tt>`srvadmin-all` on Dell hardware. Empty on non-Dell hardware.</tt></td>
+    <td>`srvadmin-all` on Dell hardware. Empty on non-Dell hardware.</td>
   </tr>
 </table>
 
@@ -69,7 +69,7 @@ correspond to the parameters in the `yum_repository` library.
     <th>Corresponding repository</th>
   </tr>
   <tr>
-    <td>yum['dell']['community']</td>
+    <td><tt>yum['dell']['community']<tt></td>
     <td>Community supported Open Source software.</td>
   </tr>
   <tr>
@@ -93,25 +93,25 @@ correspond to the parameters in the `yum_repository` library.
     <td><tt>namespace['repositoryid']</tt></td>
     <td>String</td>
     <td>Filename of repo file.</td>
-    <td><tt>dell-community, dell-omsa-indep, dell-omsa-specific respectively</tt></td>
+    <td>`dell-community`, `dell-omsa-indep`, `dell-omsa-specific` respectively</td>
   </tr>
   <tr>
     <td><tt>namespace['description']</tt></td>
     <td>String</td>
     <td>Human readable description for repository.</td>
-    <td><tt>e.g. Dell Community Repository</tt></td>
+    <td>e.g. Dell Community Repository</td>
   </tr>
   <tr>
     <td><tt>namespace['mirrorlist']</tt></td>
     <td>String</td>
     <td>URL with list of mirrors.</td>
-    <td><tt></tt></td>
+    <td>repository specific</td>
   </tr>
   <tr>
     <td><tt>namespace['gpgkey']</tt></td>
     <td>String</td>
     <td>URL of public signing key for package</td>
-    <td><tt></tt></td>
+    <td>repository specific</td>
   </tr>
   <tr>
     <td><tt>namespace['gpgcheck']</tt></td>
