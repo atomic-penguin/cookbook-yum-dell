@@ -53,7 +53,7 @@ The following are overridable attributes, in the `yum['dell']` namespace.
     <td><tt>['yum']['dell']['packages']</tt></td>
     <td>Array</td>
     <td>An array of packages from Dell repositories to install.</td>
-    <td>`srvadmin-all` on Dell hardware. Empty on non-Dell hardware.</td>
+    <td><tt>srvadmin-all</tt> on Dell hardware. <tt>Empty</tt> on non-Dell hardware.</td>
   </tr>
 </table>
 
@@ -69,15 +69,15 @@ correspond to the parameters in the `yum_repository` library.
     <th>Corresponding repository</th>
   </tr>
   <tr>
-    <td><tt>yum['dell']['community']<tt></td>
+    <td><tt>yum['dell']['community']</tt></td>
     <td>Community supported Open Source software.</td>
   </tr>
   <tr>
-    <td>yum['dell']['omsa-indep']</td>
+    <td><tt>yum['dell']['omsa-indep']</tt></td>
     <td>Dell OMSA repository, Hardware independent</td>
   </tr>
   <tr>
-    <td>yum['dell']['omsa-specific']</td>
+    <td><tt>yum['dell']['omsa-specific']</tt></td>
     <td>Dell OMSA repository, Hardware specific</td>
   </tr>
 </table>
@@ -90,37 +90,37 @@ correspond to the parameters in the `yum_repository` library.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>namespace['repositoryid']</tt></td>
+    <td><tt>$namespace['repositoryid']</tt></td>
     <td>String</td>
     <td>Filename of repo file.</td>
-    <td>`dell-community`, `dell-omsa-indep`, `dell-omsa-specific` respectively</td>
+    <td><tt>dell-community</tt>, <tt>dell-omsa-indep</tt>, <tt>dell-omsa-specific</tt> respectively</td>
   </tr>
   <tr>
-    <td><tt>namespace['description']</tt></td>
+    <td><tt>$namespace['description']</tt></td>
     <td>String</td>
     <td>Human readable description for repository.</td>
     <td>e.g. Dell Community Repository</td>
   </tr>
   <tr>
-    <td><tt>namespace['mirrorlist']</tt></td>
+    <td><tt>$namespace['mirrorlist']</tt></td>
     <td>String</td>
     <td>URL with list of mirrors.</td>
     <td>repository specific</td>
   </tr>
   <tr>
-    <td><tt>namespace['gpgkey']</tt></td>
+    <td><tt>$namespace['gpgkey']</tt></td>
     <td>String</td>
     <td>URL of public signing key for package</td>
     <td>repository specific</td>
   </tr>
   <tr>
-    <td><tt>namespace['gpgcheck']</tt></td>
+    <td><tt>$namespace['gpgcheck']</tt></td>
     <td>Boolean</td>
     <td>Whether, or not, to check the provided gpgkey</td>
     <td><tt>true</tt></td>
   </tr>
   <tr>
-    <td><tt>namespace['failovermethod']</tt></td>
+    <td><tt>$namespace['failovermethod']</tt></td>
     <td>List</td>
     <td>Method to choose next mirror on failure.  Either, priority or roundrobin.</td>
     <td><tt>priority</tt></td>
