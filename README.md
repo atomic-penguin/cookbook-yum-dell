@@ -178,9 +178,6 @@ License and Authors
 Author:: Eric G. Wolfe
 Copyright:: 2010-2011
 
-Contributor:: Bryan W. Berry
-Copyright:: 2012
-
 Author:: Tippr, Inc.
 Copyright:: 2010
 
