@@ -2,6 +2,17 @@ yum-dell Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the yum-dell cookbook.
 
+v3.0.2
+------
+
+* Update tests
+* Workaround for COOK-4164
+
+v3.0.1
+------
+
+Update metadata
+
 v3.0.0
 ------
 

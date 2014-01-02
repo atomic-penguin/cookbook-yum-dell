@@ -23,6 +23,6 @@ default['yum']['dell']['community']['description'] = 'Dell Community Repository'
 default['yum']['dell']['community']['mirrorlist'] = 'http://linux.dell.com/repo/community/mirrors.cgi?' +
   "osname=el#{node['platform_version'].to_i}&basearch=$basearch"
 default['yum']['dell']['community']['gpgkey'] = 'http://linux.dell.com/repo/community/content/' +
-  "el#{node['platform_version'].to_i}-$basearch/repodata/repomd.xml.key"
+  "el#{node['platform_version'].to_i}-#{node['kernel']['machine']}/repodata/repomd.xml.key"
 default['yum']['dell']['community']['gpgcheck'] = true
 default['yum']['dell']['community']['failovermethod'] = 'priority'

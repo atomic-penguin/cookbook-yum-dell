@@ -21,6 +21,14 @@
 # Detection of Dell hardware depends on dmidecode
 package 'dmidecode'
 
+# Download community GPG key
+remote_file '/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-community' do
+  source node['yum']['dell']['community']['gpgkey']
+end
+
+# Import community GPG key
+execute 'rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-dell-community'
+
 # Community supported software.  Does not require Dell Hardware.
 yum_repository node['yum']['dell']['community']['repositoryid'] do
   description node['yum']['dell']['community']['description']
@@ -39,6 +47,17 @@ end
     gpgkey node['yum']['dell'][repo]['gpgkey']
     gpgcheck node['yum']['dell'][repo]['gpgcheck']
     failovermethod node['yum']['dell'][repo]['failovermethod']
+    only_if { node['yum']['dell']['enabled'] }
+  end
+
+  # Download GPG keys
+  remote_file "/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-#{repo}" do
+    source node['yum']['dell'][repo]['gpgkey']
+    only_if { node['yum']['dell']['enabled'] }
+  end
+
+  # Import GPG keys
+  execute "rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-dell-#{repo}" do
     only_if { node['yum']['dell']['enabled'] }
   end
 end
