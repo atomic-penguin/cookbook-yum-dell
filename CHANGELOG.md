@@ -2,6 +2,11 @@ yum-dell Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the yum-dell cookbook.
 
+v3.0.3
+
+* Fix i686 URI
+* Add regression tests for kernel.machine i686 case.
+
 v3.0.2
 ------
 

@@ -20,8 +20,14 @@
 
 default['yum']['dell']['omsa-specific']['repositoryid'] = 'dell-omsa-specific'
 default['yum']['dell']['omsa-specific']['description'] = 'Dell OMSA repository - Hardware specific'
-default['yum']['dell']['omsa-specific']['mirrorlist'] = 'http://linux.dell.com/repo/hardware/latest/mirrors.cgi?' +
-  "osname=el#{node['platform_version'].to_i}&basearch=$basearch&native=1&sys_ven_id=$sys_ven_id&sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver"
+case node['kernel']['machine']
+when /i[3456]86/
+  default['yum']['dell']['omsa-specific']['mirrorlist'] = 'http://linux.dell.com/repo/hardware/latest/mirrors.cgi?' +
+    "osname=el#{node['platform_version'].to_i}&basearch=i386&native=1&sys_ven_id=$sys_ven_id&sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver"
+else
+  default['yum']['dell']['omsa-specific']['mirrorlist'] = 'http://linux.dell.com/repo/hardware/latest/mirrors.cgi?' +
+    "osname=el#{node['platform_version'].to_i}&basearch=$basearch&native=1&sys_ven_id=$sys_ven_id&sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver"
+end
 default['yum']['dell']['omsa-specific']['gpgkey'] = 'http://linux.dell.com/repo/hardware/latest/RPM-GPG-KEY-dell'
 default['yum']['dell']['omsa-specific']['gpgcheck'] = true
 default['yum']['dell']['omsa-specific']['failovermethod'] = 'priority'

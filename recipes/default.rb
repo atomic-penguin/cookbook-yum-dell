@@ -27,7 +27,10 @@ remote_file '/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-community' do
 end
 
 # Import community GPG key
-execute 'rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-dell-community'
+execute 'rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-dell-community' do
+  action :nothing
+  subscribes :run, 'remote_file[/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-community]', :immediately
+end
 
 # Community supported software.  Does not require Dell Hardware.
 yum_repository node['yum']['dell']['community']['repositoryid'] do
@@ -59,6 +62,8 @@ end
   # Import GPG keys
   execute "rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-dell-#{repo}" do
     only_if { node['yum']['dell']['enabled'] }
+    action :nothing
+    subscribes :run, "remote_file[/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-#{repo}", :immediately
   end
 end
 
