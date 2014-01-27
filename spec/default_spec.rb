@@ -80,7 +80,7 @@ describe 'yum-dell::default' do
 
     it 'creates dell-omsa-specific repository with i386 architecture' do
       expect(chef_run).to create_yum_repository('dell-omsa-specific').with(
-        mirrorlist: 'http://linux.dell.com/repo/hardware/latest/mirrors.cgi?osname=el6&basearch=i386&native=1&sys_ven_id=$sys_ven_id&sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver',
+        mirrorlist: 'http://linux.dell.com/repo/hardware/latest/mirrors.cgi?osname=el6&basearch=i386&native=1&sys_ven_id=$sys_ven_id&sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver'
       )
     end
   end
