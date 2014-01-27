@@ -1,5 +1,5 @@
 ---
-driver: vagrant
+driver: docker 
 
 provisioner:
   name: chef_solo

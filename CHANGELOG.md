@@ -2,7 +2,16 @@ yum-dell Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the yum-dell cookbook.
 
+v3.0.4
+------
+
+* Remove yum_key workaround
+* Update tests
+* Remove stale key file
+* Change kitchen plugin to docker
+
 v3.0.3
+------
 
 * Fix i686 URI
 * Add regression tests for kernel.machine i686 case.

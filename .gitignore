@@ -4,3 +4,4 @@ metadata.json
 .kitchen/
 .kitchen.local.yml
 *.swp
+checkstyle.xml

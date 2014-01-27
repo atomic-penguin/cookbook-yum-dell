@@ -13,36 +13,21 @@ describe 'yum-dell::default' do
       expect(chef_run).to install_package('dmidecode')
     end
 
-    it 'download all Dell keys' do
-      expect(chef_run).to create_remote_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-community')
-      expect(chef_run).to create_remote_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-omsa-indep')
-      expect(chef_run).to create_remote_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-omsa-specific')
-    end
-
-    it 'creates all Dell repositories' do
-      expect(chef_run).to create_yum_repository('dell-community')
-      expect(chef_run).to create_yum_repository('dell-omsa-indep')
-      expect(chef_run).to create_yum_repository('dell-omsa-specific')
-    end
-
-    it 'renders /etc/yum.repos.d/dell-community.repo with correct mirrorlist' do
-      expect(chef_run).to render_file('/etc/yum.repos.d/dell-community.repo').with_content(
-        'mirrorlist=http://linux.dell.com/repo/community/mirrors.cgi?osname=el6&basearch=$basearch'
+    it 'creates dell-community repository with correct mirrorlist' do
+      expect(chef_run).to create_yum_repository('dell-community').with(
+        mirrorlist: 'http://linux.dell.com/repo/community/mirrors.cgi?osname=el6&basearch=$basearch'
       )
     end
 
-    it 'renders /etc/yum.repos.d/dell-omsa-indep.repo with correct mirrorlist' do
-      expect(chef_run).to render_file('/etc/yum.repos.d/dell-omsa-indep.repo').with_content(
-        'mirrorlist=http://linux.dell.com/repo/hardware/latest/mirrors.cgi?' +
-        'osname=el6&basearch=$basearch&native=1&dellsysidpluginver=$dellsysidpluginver'
+    it 'creates dell-omsa-indep repository with correct mirrorlist' do
+      expect(chef_run).to create_yum_repository('dell-omsa-indep').with(
+        mirrorlist: 'http://linux.dell.com/repo/hardware/latest/mirrors.cgi?osname=el6&basearch=$basearch&native=1&dellsysidpluginver=$dellsysidpluginver'
       )
     end
 
-    it 'renders /etc/yum.repos.d/dell/omsa-specific.repo with correct mirrorlist' do
-      expect(chef_run).to render_file('/etc/yum.repos.d/dell-omsa-specific.repo').with_content(
-        'mirrorlist=http://linux.dell.com/repo/hardware/latest/mirrors.cgi' +
-        '?osname=el6&basearch=$basearch&native=1&sys_ven_id=$sys_ven_id&' +
-        'sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver'
+    it 'renders dell-omsa-specific repository with correct mirrorlist' do
+      expect(chef_run).to create_yum_repository('dell-omsa-specific').with(
+        mirrorlist: 'http://linux.dell.com/repo/hardware/latest/mirrors.cgi?osname=el6&basearch=$basearch&native=1&sys_ven_id=$sys_ven_id&sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver'
       )
     end
 
@@ -59,27 +44,17 @@ describe 'yum-dell::default' do
       end.converge(described_recipe)
     end
 
-    it 'download file Dell community key' do
-      expect(chef_run).to create_remote_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-community')
-    end
-
-    it 'to not download OMSA keys' do
-      expect(chef_run).to_not create_remote_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-omsa-indep')
-      expect(chef_run).to_not create_remote_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-dell-omsa-specific')
-    end
-
-    it 'to create yum repository dell-community' do
-      expect(chef_run).to create_yum_repository('dell-community')
-    end
-
-    it 'renders dell-community.repo with correct mirrorlist' do
-      expect(chef_run).to render_file('/etc/yum.repos.d/dell-community.repo').with_content(
-        'mirrorlist=http://linux.dell.com/repo/community/mirrors.cgi?osname=el6&basearch=$basearch'
+    it 'creates dell-community repository with correct mirrorlist' do
+      expect(chef_run).to create_yum_repository('dell-community').with(
+        mirrorlist: 'http://linux.dell.com/repo/community/mirrors.cgi?osname=el6&basearch=$basearch'
       )
     end
 
-    it 'to not create OMSA repositories' do
+    it 'to not create dell-omsa-indep repository' do
       expect(chef_run).to_not create_yum_repository('dell-omsa-indep')
+    end
+
+    it 'to not create dell-omsa-specific repository' do
       expect(chef_run).to_not create_yum_repository('dell-omsa-specific')
     end
 
@@ -96,20 +71,16 @@ describe 'yum-dell::default' do
       end.converge(described_recipe)
     end
 
-    it 'renders dell-community.repo with correct content' do
-      expect(chef_run).to render_file('/etc/yum.repos.d/dell-community.repo').with_content(
-        'mirrorlist=http://linux.dell.com/repo/community/mirrors.cgi?osname=el6&basearch=i386'
-      )
-      expect(chef_run).to render_file('/etc/yum.repos.d/dell-community.repo').with_content(
-        'gpgkey=http://linux.dell.com/repo/community/content/el6-i386/repodata/repomd.xml.key'
+    it 'creates dell-community repository with i386 architecture' do
+      expect(chef_run).to create_yum_repository('dell-community').with(
+        mirrorlist: 'http://linux.dell.com/repo/community/mirrors.cgi?osname=el6&basearch=i386',
+        gpgkey: 'http://linux.dell.com/repo/community/content/el6-i386/repodata/repomd.xml.key'
       )
     end
 
-    it 'renders dell-omsa-specific.repo with correct mirrorlist' do
-      expect(chef_run).to render_file('/etc/yum.repos.d/dell-omsa-specific.repo').with_content(
-        'mirrorlist=http://linux.dell.com/repo/hardware/latest/mirrors.cgi' +
-        '?osname=el6&basearch=i386&native=1&sys_ven_id=$sys_ven_id&' +
-        'sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver'
+    it 'creates dell-omsa-specific repository with i386 architecture' do
+      expect(chef_run).to create_yum_repository('dell-omsa-specific').with(
+        mirrorlist: 'http://linux.dell.com/repo/hardware/latest/mirrors.cgi?osname=el6&basearch=i386&native=1&sys_ven_id=$sys_ven_id&sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver',
       )
     end
   end
