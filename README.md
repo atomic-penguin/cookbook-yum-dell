@@ -1,4 +1,4 @@
-yum-corporate Cookbook
+yum-dell Cookbook
 ======================
 
 [![Build Status](https://secure.travis-ci.org/atomic-penguin/cookbook-yum-dell.png?branch=master)](http://travis-ci.org/atomic-penguin/cookbook-yum-dell)

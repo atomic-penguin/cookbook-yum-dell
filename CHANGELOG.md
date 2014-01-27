@@ -9,6 +9,7 @@ v3.0.4
 * Update tests
 * Remove stale key file
 * Change kitchen plugin to docker
+* Add Jenkins task for internal testing
 
 v3.0.3
 ------
