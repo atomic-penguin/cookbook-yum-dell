@@ -1,5 +1,6 @@
 ---
-driver: docker 
+driver:
+  name: docker
 
 provisioner:
   name: chef_solo
