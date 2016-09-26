@@ -28,7 +28,7 @@ else
   default['yum']['dell']['omsa-specific']['mirrorlist'] = 'http://linux.dell.com/repo/hardware/latest/mirrors.cgi?' +
     "osname=el#{node['platform_version'].to_i}&basearch=$basearch&native=1&sys_ven_id=$sys_ven_id&sys_dev_id=$sys_dev_id&dellsysidpluginver=$dellsysidpluginver"
 end
-default['yum']['dell']['omsa-specific']['gpgkey'] = 'http://linux.dell.com/repo/hardware/latest/RPM-GPG-KEY-dell'
+default['yum']['dell']['omsa-specific']['gpgkey'] = 'http://linux.dell.com/repo/hardware/latest/public.key'
 default['yum']['dell']['omsa-specific']['gpgcheck'] = true
 default['yum']['dell']['omsa-specific']['failovermethod'] = 'priority'
 default['yum']['dell']['omsa-specific']['packages'] = %w[ srvadmin-all ]
