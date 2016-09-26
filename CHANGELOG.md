@@ -2,6 +2,12 @@ yum-dell Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the yum-dell cookbook.
 
+v3.0.5
+------
+
+* Update GPG key URL
+* Constrain yum dependency to 3.x or higher 
+
 v3.0.4
 ------
 

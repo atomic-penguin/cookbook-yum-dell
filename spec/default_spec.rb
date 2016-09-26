@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'yum-dell::default' do
   context 'on Centos 6.4 x86_64 with Dell hardware' do
     let(:chef_run) do
-      ChefSpec::Runner.new(platform: 'centos', version: 6.4, step_into: ['yum_repository']) do |node|
+      ChefSpec::SoloRunner.new(platform: 'centos', version: 6.4, step_into: ['yum_repository']) do |node|
         node.automatic['dmi']['system']['manufacturer'] = 'Dell Inc.'
         node.automatic['kernel']['machine'] = 'x86_64'
       end.converge(described_recipe)
@@ -38,7 +38,7 @@ describe 'yum-dell::default' do
 
   context 'on Centos 6.4 x86_64 on non-Dell hardware' do
     let(:chef_run) do
-      ChefSpec::Runner.new(platform: 'centos', version: 6.4, step_into: ['yum_repository']) do |node|
+      ChefSpec::SoloRunner.new(platform: 'centos', version: 6.4, step_into: ['yum_repository']) do |node|
         node.automatic['dmi']['system']['manufacturer'] = 'VMWare Inc.'
         node.automatic['kernel']['machine'] = 'x86_64'
       end.converge(described_recipe)
@@ -65,7 +65,7 @@ describe 'yum-dell::default' do
 
   context 'on Centos 6.4 i686 on Dell hardware' do
     let(:chef_run) do
-      ChefSpec::Runner.new(platform: 'centos', version: 6.4, step_into: ['yum_repository']) do |node|
+      ChefSpec::SoloRunner.new(platform: 'centos', version: 6.4, step_into: ['yum_repository']) do |node|
         node.automatic['dmi']['system']['manufacturer'] = 'Dell Inc.'
         node.automatic['kernel']['machine'] = 'i686'
       end.converge(described_recipe)

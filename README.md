@@ -28,7 +28,7 @@ You need to have a RHEL family platform, and yum, to use the cookbook.
 
 #### cookbooks 
 
-- `yum` - Opscode maintained v3.0.x cookbook
+- `yum` - Opscode maintained 3.0+ cookbook 
 
 Attributes
 ----------
